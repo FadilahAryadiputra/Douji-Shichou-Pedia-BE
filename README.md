@@ -1,0 +1,1 @@
+This project uses Express.js and Prisma as the ORM.
