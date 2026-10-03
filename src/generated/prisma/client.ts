@@ -46,3 +46,38 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Video
+ * 
+ */
+export type Video = Prisma.VideoModel
+/**
+ * Model Episode
+ * 
+ */
+export type Episode = Prisma.EpisodeModel
+/**
+ * Model Playlist
+ * 
+ */
+export type Playlist = Prisma.PlaylistModel
+/**
+ * Model Genre
+ * 
+ */
+export type Genre = Prisma.GenreModel
+/**
+ * Model VideoGenre
+ * 
+ */
+export type VideoGenre = Prisma.VideoGenreModel
+/**
+ * Model Channel
+ * 
+ */
+export type Channel = Prisma.ChannelModel
+/**
+ * Model VideoChannel
+ * 
+ */
+export type VideoChannel = Prisma.VideoChannelModel
