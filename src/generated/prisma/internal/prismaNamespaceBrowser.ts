@@ -51,7 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Video: 'Video',
+  Episode: 'Episode',
+  Playlist: 'Playlist',
+  Genre: 'Genre',
+  VideoGenre: 'VideoGenre',
+  Channel: 'Channel',
+  VideoChannel: 'VideoChannel'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,6 +92,107 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const VideoScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  playlistId: 'playlistId',
+  malId: 'malId',
+  titleEnglish: 'titleEnglish',
+  titleJapanese: 'titleJapanese',
+  synopsis: 'synopsis',
+  imageUrl: 'imageUrl',
+  largeImageUrl: 'largeImageUrl',
+  airedFrom: 'airedFrom',
+  airedTo: 'airedTo',
+  score: 'score',
+  status: 'status',
+  totalEpisodes: 'totalEpisodes',
+  mediaType: 'mediaType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type VideoScalarFieldEnum = (typeof VideoScalarFieldEnum)[keyof typeof VideoScalarFieldEnum]
+
+
+export const EpisodeScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  videoId: 'videoId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type EpisodeScalarFieldEnum = (typeof EpisodeScalarFieldEnum)[keyof typeof EpisodeScalarFieldEnum]
+
+
+export const PlaylistScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  videoList: 'videoList',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type PlaylistScalarFieldEnum = (typeof PlaylistScalarFieldEnum)[keyof typeof PlaylistScalarFieldEnum]
+
+
+export const GenreScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type GenreScalarFieldEnum = (typeof GenreScalarFieldEnum)[keyof typeof GenreScalarFieldEnum]
+
+
+export const VideoGenreScalarFieldEnum = {
+  videoId: 'videoId',
+  genreId: 'genreId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type VideoGenreScalarFieldEnum = (typeof VideoGenreScalarFieldEnum)[keyof typeof VideoGenreScalarFieldEnum]
+
+
+export const ChannelScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  nameJapanese: 'nameJapanese',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  largeImageUrl: 'largeImageUrl',
+  youtubeUrl: 'youtubeUrl',
+  twitchUrl: 'twitchUrl',
+  xUrl: 'xUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ChannelScalarFieldEnum = (typeof ChannelScalarFieldEnum)[keyof typeof ChannelScalarFieldEnum]
+
+
+export const VideoChannelScalarFieldEnum = {
+  videoId: 'videoId',
+  channelId: 'channelId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type VideoChannelScalarFieldEnum = (typeof VideoChannelScalarFieldEnum)[keyof typeof VideoChannelScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -21,9 +21,9 @@ enum Role {
 }
 
 model User {
-  id                 String  @id @default(uuid())
+  id                 String  @id @default(dbgenerated("gen_random_uuid()"))
   role               Role
-  username               String
+  username           String
   email              String  @unique
   password           String?
   photoUrl           String? @map("photo_url")
@@ -35,4 +35,127 @@ model User {
   deletedAt DateTime? @map("deleted_at")
 
   @@map("user")
+}
+
+model Video {
+  id         String  @id @default(dbgenerated("gen_random_uuid()"))
+  slug       String  @unique @default(dbgenerated("gen_random_uuid()"))
+  title      String
+  playlistId String? @map("playlist_id")
+
+  malId         Int?      @unique @map("mal_id")
+  titleEnglish  String?   @map("title_english")
+  titleJapanese String?   @map("title_japanese")
+  synopsis      String?   @db.Text
+  imageUrl      String?   @map("image_url")
+  largeImageUrl String?   @map("large_image_url")
+  airedFrom     DateTime? @map("aired_from")
+  airedTo       DateTime? @map("aired_to")
+  score         Float?
+  status        String?
+  totalEpisodes Int?      @map("total_episodes")
+  mediaType     String?   @map("media_type")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  playlist Playlist?      @relation(fields: [playlistId], references: [id])
+  episodes Episode[]
+  genres   VideoGenre[]
+  channels VideoChannel[]
+
+  @@map("video")
+}
+
+model Episode {
+  id      String @id @default(dbgenerated("gen_random_uuid()"))
+  title   String
+  videoId String @map("video_id")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  video Video @relation(fields: [videoId], references: [id])
+
+  @@map("episode")
+}
+
+model Playlist {
+  id        String  @id @default(dbgenerated("gen_random_uuid()"))
+  name      String
+  videoList String? @map("video_list")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  videos Video[]
+
+  @@map("playlist")
+}
+
+model Genre {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  videos VideoGenre[]
+
+  @@map("genre")
+}
+
+model VideoGenre {
+  videoId String
+  genreId Int
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  video Video @relation(fields: [videoId], references: [id])
+  genre Genre @relation(fields: [genreId], references: [id])
+
+  @@id([videoId, genreId])
+  @@map("video_genre")
+}
+
+model Channel {
+  id            String  @id @default(dbgenerated("gen_random_uuid()"))
+  slug          String  @unique @default(dbgenerated("gen_random_uuid()"))
+  name          String
+  nameJapanese  String? @map("name_japanese")
+  description   String? @db.Text
+  imageUrl      String? @map("image_url")
+  largeImageUrl String? @map("large_image_url")
+  youtubeUrl    String? @map("youtube_url")
+  twitchUrl     String? @map("twitch_url")
+  xUrl          String? @map("x_url")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  videos VideoChannel[]
+
+  @@map("channel")
+}
+
+model VideoChannel {
+  videoId   String
+  channelId String
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  video   Video   @relation(fields: [videoId], references: [id])
+  channel Channel @relation(fields: [channelId], references: [id])
+
+  @@id([videoId, channelId])
+  @@map("video_channel")
 }

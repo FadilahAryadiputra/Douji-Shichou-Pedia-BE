@@ -20,3 +20,6 @@ config({
 
 export const PORT = process.env.PORT || 8000;
 export const DATABASE_URL = process.env.DATABASE_URL || ""
+
+export const MAL_BASE_URL = "https://api.myanimelist.net/v2";
+export const MAL_CLIENT_ID = process.env.MAL_CLIENT_ID || "";

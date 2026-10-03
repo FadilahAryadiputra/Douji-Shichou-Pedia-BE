@@ -12,6 +12,7 @@ import { AppError } from "./utils/app.error.js";
 import { NotFoundMiddleware } from "./middlewares/not-found.middleware.js";
 import { ErrorHandlerMiddleware } from "./middlewares/error-handler.middleware.js";
 import { AuthRouter } from "./modules/auth/auth.router.js";
+import { MalAnimeRouter } from "./modules/mal-anime/mal-anime.router.js";
 
 export default class App {
   private app: Express;
@@ -30,27 +31,20 @@ export default class App {
   }
 
   private handleError(): void {
-    /*
-      📒 Docs:
-      This is a not found error handler.
-    */
     this.app.use(NotFoundMiddleware.handle());
-
-    /*
-        📒 Docs:
-        This is a centralized error-handling middleware.
-    */
     this.app.use(ErrorHandlerMiddleware.handle());
   }
 
   private routes(): void {;
     const authRouter = new AuthRouter();
+    const malAnimeRouter = new MalAnimeRouter();
 
     this.app.get("/api", (req: Request, res: Response) => {
       res.send(`Hello, Welcome to Douji Shichou Pedia API!`);
     });
 
     this.app.use("/api/auth", authRouter.getRouter());
+    this.app.use("/api/mal-anime", malAnimeRouter.getRouter());
   }
 
   public start(): void {

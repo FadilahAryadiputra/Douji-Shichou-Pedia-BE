@@ -9,4 +9,11 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.js'
+export type * from './models/Video.js'
+export type * from './models/Episode.js'
+export type * from './models/Playlist.js'
+export type * from './models/Genre.js'
+export type * from './models/VideoGenre.js'
+export type * from './models/Channel.js'
+export type * from './models/VideoChannel.js'
 export type * from './commonInputTypes.js'
