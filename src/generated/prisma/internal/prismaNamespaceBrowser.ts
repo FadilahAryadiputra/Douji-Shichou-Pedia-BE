@@ -58,7 +58,9 @@ export const ModelName = {
   Genre: 'Genre',
   VideoGenre: 'VideoGenre',
   Channel: 'Channel',
-  VideoChannel: 'VideoChannel'
+  VideoChannel: 'VideoChannel',
+  ChannelStream: 'ChannelStream',
+  ChannelStreamEpisode: 'ChannelStreamEpisode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -99,6 +101,7 @@ export const VideoScalarFieldEnum = {
   slug: 'slug',
   title: 'title',
   playlistId: 'playlistId',
+  playlistWatchOrder: 'playlistWatchOrder',
   malId: 'malId',
   titleEnglish: 'titleEnglish',
   titleJapanese: 'titleJapanese',
@@ -121,6 +124,7 @@ export type VideoScalarFieldEnum = (typeof VideoScalarFieldEnum)[keyof typeof Vi
 
 export const EpisodeScalarFieldEnum = {
   id: 'id',
+  episodeNumber: 'episodeNumber',
   title: 'title',
   videoId: 'videoId',
   createdAt: 'createdAt',
@@ -134,7 +138,6 @@ export type EpisodeScalarFieldEnum = (typeof EpisodeScalarFieldEnum)[keyof typeo
 export const PlaylistScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  videoList: 'videoList',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -193,6 +196,30 @@ export const VideoChannelScalarFieldEnum = {
 } as const
 
 export type VideoChannelScalarFieldEnum = (typeof VideoChannelScalarFieldEnum)[keyof typeof VideoChannelScalarFieldEnum]
+
+
+export const ChannelStreamScalarFieldEnum = {
+  id: 'id',
+  channelId: 'channelId',
+  link: 'link',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ChannelStreamScalarFieldEnum = (typeof ChannelStreamScalarFieldEnum)[keyof typeof ChannelStreamScalarFieldEnum]
+
+
+export const ChannelStreamEpisodeScalarFieldEnum = {
+  streamId: 'streamId',
+  episodeId: 'episodeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ChannelStreamEpisodeScalarFieldEnum = (typeof ChannelStreamEpisodeScalarFieldEnum)[keyof typeof ChannelStreamEpisodeScalarFieldEnum]
 
 
 export const SortOrder = {

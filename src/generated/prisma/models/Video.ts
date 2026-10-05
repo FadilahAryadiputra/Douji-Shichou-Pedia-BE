@@ -27,12 +27,14 @@ export type AggregateVideo = {
 }
 
 export type VideoAvgAggregateOutputType = {
+  playlistWatchOrder: number | null
   malId: number | null
   score: number | null
   totalEpisodes: number | null
 }
 
 export type VideoSumAggregateOutputType = {
+  playlistWatchOrder: number | null
   malId: number | null
   score: number | null
   totalEpisodes: number | null
@@ -43,6 +45,7 @@ export type VideoMinAggregateOutputType = {
   slug: string | null
   title: string | null
   playlistId: string | null
+  playlistWatchOrder: number | null
   malId: number | null
   titleEnglish: string | null
   titleJapanese: string | null
@@ -65,6 +68,7 @@ export type VideoMaxAggregateOutputType = {
   slug: string | null
   title: string | null
   playlistId: string | null
+  playlistWatchOrder: number | null
   malId: number | null
   titleEnglish: string | null
   titleJapanese: string | null
@@ -87,6 +91,7 @@ export type VideoCountAggregateOutputType = {
   slug: number
   title: number
   playlistId: number
+  playlistWatchOrder: number
   malId: number
   titleEnglish: number
   titleJapanese: number
@@ -107,12 +112,14 @@ export type VideoCountAggregateOutputType = {
 
 
 export type VideoAvgAggregateInputType = {
+  playlistWatchOrder?: true
   malId?: true
   score?: true
   totalEpisodes?: true
 }
 
 export type VideoSumAggregateInputType = {
+  playlistWatchOrder?: true
   malId?: true
   score?: true
   totalEpisodes?: true
@@ -123,6 +130,7 @@ export type VideoMinAggregateInputType = {
   slug?: true
   title?: true
   playlistId?: true
+  playlistWatchOrder?: true
   malId?: true
   titleEnglish?: true
   titleJapanese?: true
@@ -145,6 +153,7 @@ export type VideoMaxAggregateInputType = {
   slug?: true
   title?: true
   playlistId?: true
+  playlistWatchOrder?: true
   malId?: true
   titleEnglish?: true
   titleJapanese?: true
@@ -167,6 +176,7 @@ export type VideoCountAggregateInputType = {
   slug?: true
   title?: true
   playlistId?: true
+  playlistWatchOrder?: true
   malId?: true
   titleEnglish?: true
   titleJapanese?: true
@@ -276,6 +286,7 @@ export type VideoGroupByOutputType = {
   slug: string
   title: string
   playlistId: string | null
+  playlistWatchOrder: number | null
   malId: number | null
   titleEnglish: string | null
   titleJapanese: string | null
@@ -321,6 +332,7 @@ export type VideoWhereInput = {
   slug?: Prisma.StringFilter<"Video"> | string
   title?: Prisma.StringFilter<"Video"> | string
   playlistId?: Prisma.StringNullableFilter<"Video"> | string | null
+  playlistWatchOrder?: Prisma.IntNullableFilter<"Video"> | number | null
   malId?: Prisma.IntNullableFilter<"Video"> | number | null
   titleEnglish?: Prisma.StringNullableFilter<"Video"> | string | null
   titleJapanese?: Prisma.StringNullableFilter<"Video"> | string | null
@@ -347,6 +359,7 @@ export type VideoOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   title?: Prisma.SortOrder
   playlistId?: Prisma.SortOrderInput | Prisma.SortOrder
+  playlistWatchOrder?: Prisma.SortOrderInput | Prisma.SortOrder
   malId?: Prisma.SortOrderInput | Prisma.SortOrder
   titleEnglish?: Prisma.SortOrderInput | Prisma.SortOrder
   titleJapanese?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -377,6 +390,7 @@ export type VideoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.VideoWhereInput | Prisma.VideoWhereInput[]
   title?: Prisma.StringFilter<"Video"> | string
   playlistId?: Prisma.StringNullableFilter<"Video"> | string | null
+  playlistWatchOrder?: Prisma.IntNullableFilter<"Video"> | number | null
   titleEnglish?: Prisma.StringNullableFilter<"Video"> | string | null
   titleJapanese?: Prisma.StringNullableFilter<"Video"> | string | null
   synopsis?: Prisma.StringNullableFilter<"Video"> | string | null
@@ -402,6 +416,7 @@ export type VideoOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   title?: Prisma.SortOrder
   playlistId?: Prisma.SortOrderInput | Prisma.SortOrder
+  playlistWatchOrder?: Prisma.SortOrderInput | Prisma.SortOrder
   malId?: Prisma.SortOrderInput | Prisma.SortOrder
   titleEnglish?: Prisma.SortOrderInput | Prisma.SortOrder
   titleJapanese?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -432,6 +447,7 @@ export type VideoScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"Video"> | string
   title?: Prisma.StringWithAggregatesFilter<"Video"> | string
   playlistId?: Prisma.StringNullableWithAggregatesFilter<"Video"> | string | null
+  playlistWatchOrder?: Prisma.IntNullableWithAggregatesFilter<"Video"> | number | null
   malId?: Prisma.IntNullableWithAggregatesFilter<"Video"> | number | null
   titleEnglish?: Prisma.StringNullableWithAggregatesFilter<"Video"> | string | null
   titleJapanese?: Prisma.StringNullableWithAggregatesFilter<"Video"> | string | null
@@ -453,6 +469,7 @@ export type VideoCreateInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -479,6 +496,7 @@ export type VideoUncheckedCreateInput = {
   slug?: string
   title: string
   playlistId?: string | null
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -503,6 +521,7 @@ export type VideoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -529,6 +548,7 @@ export type VideoUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   playlistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -554,6 +574,7 @@ export type VideoCreateManyInput = {
   slug?: string
   title: string
   playlistId?: string | null
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -575,6 +596,7 @@ export type VideoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -597,6 +619,7 @@ export type VideoUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   playlistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,6 +642,7 @@ export type VideoCountOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   title?: Prisma.SortOrder
   playlistId?: Prisma.SortOrder
+  playlistWatchOrder?: Prisma.SortOrder
   malId?: Prisma.SortOrder
   titleEnglish?: Prisma.SortOrder
   titleJapanese?: Prisma.SortOrder
@@ -637,6 +661,7 @@ export type VideoCountOrderByAggregateInput = {
 }
 
 export type VideoAvgOrderByAggregateInput = {
+  playlistWatchOrder?: Prisma.SortOrder
   malId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
@@ -647,6 +672,7 @@ export type VideoMaxOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   title?: Prisma.SortOrder
   playlistId?: Prisma.SortOrder
+  playlistWatchOrder?: Prisma.SortOrder
   malId?: Prisma.SortOrder
   titleEnglish?: Prisma.SortOrder
   titleJapanese?: Prisma.SortOrder
@@ -669,6 +695,7 @@ export type VideoMinOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   title?: Prisma.SortOrder
   playlistId?: Prisma.SortOrder
+  playlistWatchOrder?: Prisma.SortOrder
   malId?: Prisma.SortOrder
   titleEnglish?: Prisma.SortOrder
   titleJapanese?: Prisma.SortOrder
@@ -687,6 +714,7 @@ export type VideoMinOrderByAggregateInput = {
 }
 
 export type VideoSumOrderByAggregateInput = {
+  playlistWatchOrder?: Prisma.SortOrder
   malId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
@@ -811,6 +839,7 @@ export type VideoCreateWithoutEpisodesInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -836,6 +865,7 @@ export type VideoUncheckedCreateWithoutEpisodesInput = {
   slug?: string
   title: string
   playlistId?: string | null
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -875,6 +905,7 @@ export type VideoUpdateWithoutEpisodesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -900,6 +931,7 @@ export type VideoUncheckedUpdateWithoutEpisodesInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   playlistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -923,6 +955,7 @@ export type VideoCreateWithoutPlaylistInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -947,6 +980,7 @@ export type VideoUncheckedCreateWithoutPlaylistInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1001,6 +1035,7 @@ export type VideoScalarWhereInput = {
   slug?: Prisma.StringFilter<"Video"> | string
   title?: Prisma.StringFilter<"Video"> | string
   playlistId?: Prisma.StringNullableFilter<"Video"> | string | null
+  playlistWatchOrder?: Prisma.IntNullableFilter<"Video"> | number | null
   malId?: Prisma.IntNullableFilter<"Video"> | number | null
   titleEnglish?: Prisma.StringNullableFilter<"Video"> | string | null
   titleJapanese?: Prisma.StringNullableFilter<"Video"> | string | null
@@ -1022,6 +1057,7 @@ export type VideoCreateWithoutGenresInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1047,6 +1083,7 @@ export type VideoUncheckedCreateWithoutGenresInput = {
   slug?: string
   title: string
   playlistId?: string | null
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1086,6 +1123,7 @@ export type VideoUpdateWithoutGenresInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1111,6 +1149,7 @@ export type VideoUncheckedUpdateWithoutGenresInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   playlistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1134,6 +1173,7 @@ export type VideoCreateWithoutChannelsInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1159,6 +1199,7 @@ export type VideoUncheckedCreateWithoutChannelsInput = {
   slug?: string
   title: string
   playlistId?: string | null
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1198,6 +1239,7 @@ export type VideoUpdateWithoutChannelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1223,6 +1265,7 @@ export type VideoUncheckedUpdateWithoutChannelsInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   playlistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1246,6 +1289,7 @@ export type VideoCreateManyPlaylistInput = {
   id?: string
   slug?: string
   title: string
+  playlistWatchOrder?: number | null
   malId?: number | null
   titleEnglish?: string | null
   titleJapanese?: string | null
@@ -1267,6 +1311,7 @@ export type VideoUpdateWithoutPlaylistInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1291,6 +1336,7 @@ export type VideoUncheckedUpdateWithoutPlaylistInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1315,6 +1361,7 @@ export type VideoUncheckedUpdateManyWithoutPlaylistInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  playlistWatchOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   malId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   titleEnglish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleJapanese?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1386,6 +1433,7 @@ export type VideoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   slug?: boolean
   title?: boolean
   playlistId?: boolean
+  playlistWatchOrder?: boolean
   malId?: boolean
   titleEnglish?: boolean
   titleJapanese?: boolean
@@ -1413,6 +1461,7 @@ export type VideoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   slug?: boolean
   title?: boolean
   playlistId?: boolean
+  playlistWatchOrder?: boolean
   malId?: boolean
   titleEnglish?: boolean
   titleJapanese?: boolean
@@ -1436,6 +1485,7 @@ export type VideoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   slug?: boolean
   title?: boolean
   playlistId?: boolean
+  playlistWatchOrder?: boolean
   malId?: boolean
   titleEnglish?: boolean
   titleJapanese?: boolean
@@ -1459,6 +1509,7 @@ export type VideoSelectScalar = {
   slug?: boolean
   title?: boolean
   playlistId?: boolean
+  playlistWatchOrder?: boolean
   malId?: boolean
   titleEnglish?: boolean
   titleJapanese?: boolean
@@ -1476,7 +1527,7 @@ export type VideoSelectScalar = {
   deletedAt?: boolean
 }
 
-export type VideoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "playlistId" | "malId" | "titleEnglish" | "titleJapanese" | "synopsis" | "imageUrl" | "largeImageUrl" | "airedFrom" | "airedTo" | "score" | "status" | "totalEpisodes" | "mediaType" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["video"]>
+export type VideoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "playlistId" | "playlistWatchOrder" | "malId" | "titleEnglish" | "titleJapanese" | "synopsis" | "imageUrl" | "largeImageUrl" | "airedFrom" | "airedTo" | "score" | "status" | "totalEpisodes" | "mediaType" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["video"]>
 export type VideoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   playlist?: boolean | Prisma.Video$playlistArgs<ExtArgs>
   episodes?: boolean | Prisma.Video$episodesArgs<ExtArgs>
@@ -1504,6 +1555,7 @@ export type $VideoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     slug: string
     title: string
     playlistId: string | null
+    playlistWatchOrder: number | null
     malId: number | null
     titleEnglish: string | null
     titleJapanese: string | null
@@ -1950,6 +2002,7 @@ export interface VideoFieldRefs {
   readonly slug: Prisma.FieldRef<"Video", 'String'>
   readonly title: Prisma.FieldRef<"Video", 'String'>
   readonly playlistId: Prisma.FieldRef<"Video", 'String'>
+  readonly playlistWatchOrder: Prisma.FieldRef<"Video", 'Int'>
   readonly malId: Prisma.FieldRef<"Video", 'Int'>
   readonly titleEnglish: Prisma.FieldRef<"Video", 'String'>
   readonly titleJapanese: Prisma.FieldRef<"Video", 'String'>
