@@ -67,4 +67,4 @@ temp
 *.sln
 *.sw?
 
-src/generated/
+src/generated
