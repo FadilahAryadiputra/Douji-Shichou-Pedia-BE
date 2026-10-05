@@ -14,6 +14,7 @@ import { ErrorHandlerMiddleware } from "./middlewares/error-handler.middleware.j
 import { AuthRouter } from "./modules/auth/auth.router.js";
 import { MalAnimeRouter } from "./modules/mal-anime/mal-anime.router.js";
 import { VideoRouter } from "./modules/video/video.router.js";
+import { ChannelRouter } from "./modules/channel/channel.router.js";
 
 export default class App {
   private app: Express;
@@ -40,6 +41,7 @@ export default class App {
     const authRouter = new AuthRouter();
     const malAnimeRouter = new MalAnimeRouter();
     const videoRouter = new VideoRouter();
+    const channelRouter = new ChannelRouter();
 
     this.app.get("/api", (req: Request, res: Response) => {
       res.send(`Hello, Welcome to Douji Shichou Pedia API!`);
@@ -48,6 +50,7 @@ export default class App {
     this.app.use("/api/auth", authRouter.getRouter());
     this.app.use("/api/mal-anime", malAnimeRouter.getRouter());
     this.app.use("/api/video", videoRouter.getRouter());
+    this.app.use("/api/channel", channelRouter.getRouter());
   }
 
   public start(): void {
