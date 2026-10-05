@@ -67,4 +67,4 @@ temp
 *.sln
 *.sw?
 
-prisma/generated
+src/generated/

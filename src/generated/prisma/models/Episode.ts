@@ -20,12 +20,23 @@ export type EpisodeModel = runtime.Types.Result.DefaultSelection<Prisma.$Episode
 
 export type AggregateEpisode = {
   _count: EpisodeCountAggregateOutputType | null
+  _avg: EpisodeAvgAggregateOutputType | null
+  _sum: EpisodeSumAggregateOutputType | null
   _min: EpisodeMinAggregateOutputType | null
   _max: EpisodeMaxAggregateOutputType | null
 }
 
+export type EpisodeAvgAggregateOutputType = {
+  episodeNumber: number | null
+}
+
+export type EpisodeSumAggregateOutputType = {
+  episodeNumber: number | null
+}
+
 export type EpisodeMinAggregateOutputType = {
   id: string | null
+  episodeNumber: number | null
   title: string | null
   videoId: string | null
   createdAt: Date | null
@@ -35,6 +46,7 @@ export type EpisodeMinAggregateOutputType = {
 
 export type EpisodeMaxAggregateOutputType = {
   id: string | null
+  episodeNumber: number | null
   title: string | null
   videoId: string | null
   createdAt: Date | null
@@ -44,6 +56,7 @@ export type EpisodeMaxAggregateOutputType = {
 
 export type EpisodeCountAggregateOutputType = {
   id: number
+  episodeNumber: number
   title: number
   videoId: number
   createdAt: number
@@ -53,8 +66,17 @@ export type EpisodeCountAggregateOutputType = {
 }
 
 
+export type EpisodeAvgAggregateInputType = {
+  episodeNumber?: true
+}
+
+export type EpisodeSumAggregateInputType = {
+  episodeNumber?: true
+}
+
 export type EpisodeMinAggregateInputType = {
   id?: true
+  episodeNumber?: true
   title?: true
   videoId?: true
   createdAt?: true
@@ -64,6 +86,7 @@ export type EpisodeMinAggregateInputType = {
 
 export type EpisodeMaxAggregateInputType = {
   id?: true
+  episodeNumber?: true
   title?: true
   videoId?: true
   createdAt?: true
@@ -73,6 +96,7 @@ export type EpisodeMaxAggregateInputType = {
 
 export type EpisodeCountAggregateInputType = {
   id?: true
+  episodeNumber?: true
   title?: true
   videoId?: true
   createdAt?: true
@@ -119,6 +143,18 @@ export type EpisodeAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EpisodeAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EpisodeSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EpisodeMinAggregateInputType
@@ -149,18 +185,23 @@ export type EpisodeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: EpisodeCountAggregateInputType | true
+  _avg?: EpisodeAvgAggregateInputType
+  _sum?: EpisodeSumAggregateInputType
   _min?: EpisodeMinAggregateInputType
   _max?: EpisodeMaxAggregateInputType
 }
 
 export type EpisodeGroupByOutputType = {
   id: string
-  title: string
+  episodeNumber: number
+  title: string | null
   videoId: string
   createdAt: Date
   updatedAt: Date | null
   deletedAt: Date | null
   _count: EpisodeCountAggregateOutputType | null
+  _avg: EpisodeAvgAggregateOutputType | null
+  _sum: EpisodeSumAggregateOutputType | null
   _min: EpisodeMinAggregateOutputType | null
   _max: EpisodeMaxAggregateOutputType | null
 }
@@ -185,47 +226,57 @@ export type EpisodeWhereInput = {
   OR?: Prisma.EpisodeWhereInput[]
   NOT?: Prisma.EpisodeWhereInput | Prisma.EpisodeWhereInput[]
   id?: Prisma.StringFilter<"Episode"> | string
-  title?: Prisma.StringFilter<"Episode"> | string
+  episodeNumber?: Prisma.IntFilter<"Episode"> | number
+  title?: Prisma.StringNullableFilter<"Episode"> | string | null
   videoId?: Prisma.StringFilter<"Episode"> | string
   createdAt?: Prisma.DateTimeFilter<"Episode"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
   deletedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
   video?: Prisma.XOR<Prisma.VideoScalarRelationFilter, Prisma.VideoWhereInput>
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeListRelationFilter
 }
 
 export type EpisodeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  episodeNumber?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   videoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   video?: Prisma.VideoOrderByWithRelationInput
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeOrderByRelationAggregateInput
 }
 
 export type EpisodeWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  videoId_episodeNumber?: Prisma.EpisodeVideoIdEpisodeNumberCompoundUniqueInput
   AND?: Prisma.EpisodeWhereInput | Prisma.EpisodeWhereInput[]
   OR?: Prisma.EpisodeWhereInput[]
   NOT?: Prisma.EpisodeWhereInput | Prisma.EpisodeWhereInput[]
-  title?: Prisma.StringFilter<"Episode"> | string
+  episodeNumber?: Prisma.IntFilter<"Episode"> | number
+  title?: Prisma.StringNullableFilter<"Episode"> | string | null
   videoId?: Prisma.StringFilter<"Episode"> | string
   createdAt?: Prisma.DateTimeFilter<"Episode"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
   deletedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
   video?: Prisma.XOR<Prisma.VideoScalarRelationFilter, Prisma.VideoWhereInput>
-}, "id">
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeListRelationFilter
+}, "id" | "videoId_episodeNumber">
 
 export type EpisodeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  episodeNumber?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   videoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EpisodeCountOrderByAggregateInput
+  _avg?: Prisma.EpisodeAvgOrderByAggregateInput
   _max?: Prisma.EpisodeMaxOrderByAggregateInput
   _min?: Prisma.EpisodeMinOrderByAggregateInput
+  _sum?: Prisma.EpisodeSumOrderByAggregateInput
 }
 
 export type EpisodeScalarWhereWithAggregatesInput = {
@@ -233,7 +284,8 @@ export type EpisodeScalarWhereWithAggregatesInput = {
   OR?: Prisma.EpisodeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EpisodeScalarWhereWithAggregatesInput | Prisma.EpisodeScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Episode"> | string
-  title?: Prisma.StringWithAggregatesFilter<"Episode"> | string
+  episodeNumber?: Prisma.IntWithAggregatesFilter<"Episode"> | number
+  title?: Prisma.StringNullableWithAggregatesFilter<"Episode"> | string | null
   videoId?: Prisma.StringWithAggregatesFilter<"Episode"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Episode"> | Date | string
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Episode"> | Date | string | null
@@ -242,43 +294,52 @@ export type EpisodeScalarWhereWithAggregatesInput = {
 
 export type EpisodeCreateInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
   deletedAt?: Date | string | null
   video: Prisma.VideoCreateNestedOneWithoutEpisodesInput
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeCreateNestedManyWithoutEpisodeInput
 }
 
 export type EpisodeUncheckedCreateInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   videoId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
   deletedAt?: Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUncheckedCreateNestedManyWithoutEpisodeInput
 }
 
 export type EpisodeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   video?: Prisma.VideoUpdateOneRequiredWithoutEpisodesNestedInput
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUpdateManyWithoutEpisodeNestedInput
 }
 
 export type EpisodeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUncheckedUpdateManyWithoutEpisodeNestedInput
 }
 
 export type EpisodeCreateManyInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   videoId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -287,7 +348,8 @@ export type EpisodeCreateManyInput = {
 
 export type EpisodeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -295,7 +357,8 @@ export type EpisodeUpdateManyMutationInput = {
 
 export type EpisodeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -312,8 +375,14 @@ export type EpisodeOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EpisodeVideoIdEpisodeNumberCompoundUniqueInput = {
+  videoId: string
+  episodeNumber: number
+}
+
 export type EpisodeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  episodeNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   videoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -321,8 +390,13 @@ export type EpisodeCountOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
 }
 
+export type EpisodeAvgOrderByAggregateInput = {
+  episodeNumber?: Prisma.SortOrder
+}
+
 export type EpisodeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  episodeNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   videoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -332,11 +406,21 @@ export type EpisodeMaxOrderByAggregateInput = {
 
 export type EpisodeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  episodeNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   videoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type EpisodeSumOrderByAggregateInput = {
+  episodeNumber?: Prisma.SortOrder
+}
+
+export type EpisodeScalarRelationFilter = {
+  is?: Prisma.EpisodeWhereInput
+  isNot?: Prisma.EpisodeWhereInput
 }
 
 export type EpisodeCreateNestedManyWithoutVideoInput = {
@@ -381,20 +465,46 @@ export type EpisodeUncheckedUpdateManyWithoutVideoNestedInput = {
   deleteMany?: Prisma.EpisodeScalarWhereInput | Prisma.EpisodeScalarWhereInput[]
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type EpisodeCreateNestedOneWithoutChannelStreamEpisodesInput = {
+  create?: Prisma.XOR<Prisma.EpisodeCreateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedCreateWithoutChannelStreamEpisodesInput>
+  connectOrCreate?: Prisma.EpisodeCreateOrConnectWithoutChannelStreamEpisodesInput
+  connect?: Prisma.EpisodeWhereUniqueInput
+}
+
+export type EpisodeUpdateOneRequiredWithoutChannelStreamEpisodesNestedInput = {
+  create?: Prisma.XOR<Prisma.EpisodeCreateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedCreateWithoutChannelStreamEpisodesInput>
+  connectOrCreate?: Prisma.EpisodeCreateOrConnectWithoutChannelStreamEpisodesInput
+  upsert?: Prisma.EpisodeUpsertWithoutChannelStreamEpisodesInput
+  connect?: Prisma.EpisodeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EpisodeUpdateToOneWithWhereWithoutChannelStreamEpisodesInput, Prisma.EpisodeUpdateWithoutChannelStreamEpisodesInput>, Prisma.EpisodeUncheckedUpdateWithoutChannelStreamEpisodesInput>
+}
+
 export type EpisodeCreateWithoutVideoInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
   deletedAt?: Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeCreateNestedManyWithoutEpisodeInput
 }
 
 export type EpisodeUncheckedCreateWithoutVideoInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
   deletedAt?: Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUncheckedCreateNestedManyWithoutEpisodeInput
 }
 
 export type EpisodeCreateOrConnectWithoutVideoInput = {
@@ -428,16 +538,74 @@ export type EpisodeScalarWhereInput = {
   OR?: Prisma.EpisodeScalarWhereInput[]
   NOT?: Prisma.EpisodeScalarWhereInput | Prisma.EpisodeScalarWhereInput[]
   id?: Prisma.StringFilter<"Episode"> | string
-  title?: Prisma.StringFilter<"Episode"> | string
+  episodeNumber?: Prisma.IntFilter<"Episode"> | number
+  title?: Prisma.StringNullableFilter<"Episode"> | string | null
   videoId?: Prisma.StringFilter<"Episode"> | string
   createdAt?: Prisma.DateTimeFilter<"Episode"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
   deletedAt?: Prisma.DateTimeNullableFilter<"Episode"> | Date | string | null
 }
 
+export type EpisodeCreateWithoutChannelStreamEpisodesInput = {
+  id?: string
+  episodeNumber: number
+  title?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  video: Prisma.VideoCreateNestedOneWithoutEpisodesInput
+}
+
+export type EpisodeUncheckedCreateWithoutChannelStreamEpisodesInput = {
+  id?: string
+  episodeNumber: number
+  title?: string | null
+  videoId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
+}
+
+export type EpisodeCreateOrConnectWithoutChannelStreamEpisodesInput = {
+  where: Prisma.EpisodeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EpisodeCreateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedCreateWithoutChannelStreamEpisodesInput>
+}
+
+export type EpisodeUpsertWithoutChannelStreamEpisodesInput = {
+  update: Prisma.XOR<Prisma.EpisodeUpdateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedUpdateWithoutChannelStreamEpisodesInput>
+  create: Prisma.XOR<Prisma.EpisodeCreateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedCreateWithoutChannelStreamEpisodesInput>
+  where?: Prisma.EpisodeWhereInput
+}
+
+export type EpisodeUpdateToOneWithWhereWithoutChannelStreamEpisodesInput = {
+  where?: Prisma.EpisodeWhereInput
+  data: Prisma.XOR<Prisma.EpisodeUpdateWithoutChannelStreamEpisodesInput, Prisma.EpisodeUncheckedUpdateWithoutChannelStreamEpisodesInput>
+}
+
+export type EpisodeUpdateWithoutChannelStreamEpisodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  video?: Prisma.VideoUpdateOneRequiredWithoutEpisodesNestedInput
+}
+
+export type EpisodeUncheckedUpdateWithoutChannelStreamEpisodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
 export type EpisodeCreateManyVideoInput = {
   id?: string
-  title: string
+  episodeNumber: number
+  title?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -445,42 +613,80 @@ export type EpisodeCreateManyVideoInput = {
 
 export type EpisodeUpdateWithoutVideoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUpdateManyWithoutEpisodeNestedInput
 }
 
 export type EpisodeUncheckedUpdateWithoutVideoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channelStreamEpisodes?: Prisma.ChannelStreamEpisodeUncheckedUpdateManyWithoutEpisodeNestedInput
 }
 
 export type EpisodeUncheckedUpdateManyWithoutVideoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  episodeNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
+/**
+ * Count Type EpisodeCountOutputType
+ */
+
+export type EpisodeCountOutputType = {
+  channelStreamEpisodes: number
+}
+
+export type EpisodeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  channelStreamEpisodes?: boolean | EpisodeCountOutputTypeCountChannelStreamEpisodesArgs
+}
+
+/**
+ * EpisodeCountOutputType without action
+ */
+export type EpisodeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EpisodeCountOutputType
+   */
+  select?: Prisma.EpisodeCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * EpisodeCountOutputType without action
+ */
+export type EpisodeCountOutputTypeCountChannelStreamEpisodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChannelStreamEpisodeWhereInput
+}
+
 
 export type EpisodeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  episodeNumber?: boolean
   title?: boolean
   videoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
   video?: boolean | Prisma.VideoDefaultArgs<ExtArgs>
+  channelStreamEpisodes?: boolean | Prisma.Episode$channelStreamEpisodesArgs<ExtArgs>
+  _count?: boolean | Prisma.EpisodeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["episode"]>
 
 export type EpisodeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  episodeNumber?: boolean
   title?: boolean
   videoId?: boolean
   createdAt?: boolean
@@ -491,6 +697,7 @@ export type EpisodeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type EpisodeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  episodeNumber?: boolean
   title?: boolean
   videoId?: boolean
   createdAt?: boolean
@@ -501,6 +708,7 @@ export type EpisodeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type EpisodeSelectScalar = {
   id?: boolean
+  episodeNumber?: boolean
   title?: boolean
   videoId?: boolean
   createdAt?: boolean
@@ -508,9 +716,11 @@ export type EpisodeSelectScalar = {
   deletedAt?: boolean
 }
 
-export type EpisodeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "videoId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["episode"]>
+export type EpisodeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "episodeNumber" | "title" | "videoId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["episode"]>
 export type EpisodeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   video?: boolean | Prisma.VideoDefaultArgs<ExtArgs>
+  channelStreamEpisodes?: boolean | Prisma.Episode$channelStreamEpisodesArgs<ExtArgs>
+  _count?: boolean | Prisma.EpisodeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EpisodeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   video?: boolean | Prisma.VideoDefaultArgs<ExtArgs>
@@ -523,10 +733,12 @@ export type $EpisodePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Episode"
   objects: {
     video: Prisma.$VideoPayload<ExtArgs>
+    channelStreamEpisodes: Prisma.$ChannelStreamEpisodePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    title: string
+    episodeNumber: number
+    title: string | null
     videoId: string
     createdAt: Date
     updatedAt: Date | null
@@ -926,6 +1138,7 @@ readonly fields: EpisodeFieldRefs;
 export interface Prisma__EpisodeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   video<T extends Prisma.VideoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VideoDefaultArgs<ExtArgs>>): Prisma.Prisma__VideoClient<runtime.Types.Result.GetResult<Prisma.$VideoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  channelStreamEpisodes<T extends Prisma.Episode$channelStreamEpisodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Episode$channelStreamEpisodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelStreamEpisodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -956,6 +1169,7 @@ export interface Prisma__EpisodeClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface EpisodeFieldRefs {
   readonly id: Prisma.FieldRef<"Episode", 'String'>
+  readonly episodeNumber: Prisma.FieldRef<"Episode", 'Int'>
   readonly title: Prisma.FieldRef<"Episode", 'String'>
   readonly videoId: Prisma.FieldRef<"Episode", 'String'>
   readonly createdAt: Prisma.FieldRef<"Episode", 'DateTime'>
@@ -1359,6 +1573,30 @@ export type EpisodeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Episodes to delete.
    */
   limit?: number
+}
+
+/**
+ * Episode.channelStreamEpisodes
+ */
+export type Episode$channelStreamEpisodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChannelStreamEpisode
+   */
+  select?: Prisma.ChannelStreamEpisodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChannelStreamEpisode
+   */
+  omit?: Prisma.ChannelStreamEpisodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChannelStreamEpisodeInclude<ExtArgs> | null
+  where?: Prisma.ChannelStreamEpisodeWhereInput
+  orderBy?: Prisma.ChannelStreamEpisodeOrderByWithRelationInput | Prisma.ChannelStreamEpisodeOrderByWithRelationInput[]
+  cursor?: Prisma.ChannelStreamEpisodeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChannelStreamEpisodeScalarFieldEnum | Prisma.ChannelStreamEpisodeScalarFieldEnum[]
 }
 
 /**

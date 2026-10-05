@@ -81,3 +81,13 @@ export type Channel = Prisma.ChannelModel
  * 
  */
 export type VideoChannel = Prisma.VideoChannelModel
+/**
+ * Model ChannelStream
+ * 
+ */
+export type ChannelStream = Prisma.ChannelStreamModel
+/**
+ * Model ChannelStreamEpisode
+ * 
+ */
+export type ChannelStreamEpisode = Prisma.ChannelStreamEpisodeModel

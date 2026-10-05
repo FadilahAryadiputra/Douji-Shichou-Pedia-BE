@@ -358,14 +358,6 @@ export type GenreScalarRelationFilter = {
   isNot?: Prisma.GenreWhereInput
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type GenreCreateNestedOneWithoutVideosInput = {
   create?: Prisma.XOR<Prisma.GenreCreateWithoutVideosInput, Prisma.GenreUncheckedCreateWithoutVideosInput>
   connectOrCreate?: Prisma.GenreCreateOrConnectWithoutVideosInput

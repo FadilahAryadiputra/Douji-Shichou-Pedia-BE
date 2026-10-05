@@ -404,7 +404,9 @@ export const ModelName = {
   Genre: 'Genre',
   VideoGenre: 'VideoGenre',
   Channel: 'Channel',
-  VideoChannel: 'VideoChannel'
+  VideoChannel: 'VideoChannel',
+  ChannelStream: 'ChannelStream',
+  ChannelStreamEpisode: 'ChannelStreamEpisode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "video" | "episode" | "playlist" | "genre" | "videoGenre" | "channel" | "videoChannel"
+    modelProps: "user" | "video" | "episode" | "playlist" | "genre" | "videoGenre" | "channel" | "videoChannel" | "channelStream" | "channelStreamEpisode"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1016,6 +1018,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ChannelStream: {
+      payload: Prisma.$ChannelStreamPayload<ExtArgs>
+      fields: Prisma.ChannelStreamFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChannelStreamFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChannelStreamFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        findFirst: {
+          args: Prisma.ChannelStreamFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChannelStreamFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        findMany: {
+          args: Prisma.ChannelStreamFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>[]
+        }
+        create: {
+          args: Prisma.ChannelStreamCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        createMany: {
+          args: Prisma.ChannelStreamCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChannelStreamCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>[]
+        }
+        delete: {
+          args: Prisma.ChannelStreamDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        update: {
+          args: Prisma.ChannelStreamUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChannelStreamDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChannelStreamUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChannelStreamUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChannelStreamUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamPayload>
+        }
+        aggregate: {
+          args: Prisma.ChannelStreamAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChannelStream>
+        }
+        groupBy: {
+          args: Prisma.ChannelStreamGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChannelStreamGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChannelStreamCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChannelStreamCountAggregateOutputType> | number
+        }
+      }
+    }
+    ChannelStreamEpisode: {
+      payload: Prisma.$ChannelStreamEpisodePayload<ExtArgs>
+      fields: Prisma.ChannelStreamEpisodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChannelStreamEpisodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChannelStreamEpisodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        findFirst: {
+          args: Prisma.ChannelStreamEpisodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChannelStreamEpisodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        findMany: {
+          args: Prisma.ChannelStreamEpisodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>[]
+        }
+        create: {
+          args: Prisma.ChannelStreamEpisodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        createMany: {
+          args: Prisma.ChannelStreamEpisodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChannelStreamEpisodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>[]
+        }
+        delete: {
+          args: Prisma.ChannelStreamEpisodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        update: {
+          args: Prisma.ChannelStreamEpisodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        deleteMany: {
+          args: Prisma.ChannelStreamEpisodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChannelStreamEpisodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChannelStreamEpisodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>[]
+        }
+        upsert: {
+          args: Prisma.ChannelStreamEpisodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChannelStreamEpisodePayload>
+        }
+        aggregate: {
+          args: Prisma.ChannelStreamEpisodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChannelStreamEpisode>
+        }
+        groupBy: {
+          args: Prisma.ChannelStreamEpisodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChannelStreamEpisodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChannelStreamEpisodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChannelStreamEpisodeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1077,6 +1227,7 @@ export const VideoScalarFieldEnum = {
   slug: 'slug',
   title: 'title',
   playlistId: 'playlistId',
+  playlistWatchOrder: 'playlistWatchOrder',
   malId: 'malId',
   titleEnglish: 'titleEnglish',
   titleJapanese: 'titleJapanese',
@@ -1099,6 +1250,7 @@ export type VideoScalarFieldEnum = (typeof VideoScalarFieldEnum)[keyof typeof Vi
 
 export const EpisodeScalarFieldEnum = {
   id: 'id',
+  episodeNumber: 'episodeNumber',
   title: 'title',
   videoId: 'videoId',
   createdAt: 'createdAt',
@@ -1112,7 +1264,6 @@ export type EpisodeScalarFieldEnum = (typeof EpisodeScalarFieldEnum)[keyof typeo
 export const PlaylistScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  videoList: 'videoList',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -1171,6 +1322,30 @@ export const VideoChannelScalarFieldEnum = {
 } as const
 
 export type VideoChannelScalarFieldEnum = (typeof VideoChannelScalarFieldEnum)[keyof typeof VideoChannelScalarFieldEnum]
+
+
+export const ChannelStreamScalarFieldEnum = {
+  id: 'id',
+  channelId: 'channelId',
+  link: 'link',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ChannelStreamScalarFieldEnum = (typeof ChannelStreamScalarFieldEnum)[keyof typeof ChannelStreamScalarFieldEnum]
+
+
+export const ChannelStreamEpisodeScalarFieldEnum = {
+  streamId: 'streamId',
+  episodeId: 'episodeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ChannelStreamEpisodeScalarFieldEnum = (typeof ChannelStreamEpisodeScalarFieldEnum)[keyof typeof ChannelStreamEpisodeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1438,6 +1613,8 @@ export type GlobalOmitConfig = {
   videoGenre?: Prisma.VideoGenreOmit
   channel?: Prisma.ChannelOmit
   videoChannel?: Prisma.VideoChannelOmit
+  channelStream?: Prisma.ChannelStreamOmit
+  channelStreamEpisode?: Prisma.ChannelStreamEpisodeOmit
 }
 
 /* Types for Logging */
